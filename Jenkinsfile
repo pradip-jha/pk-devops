@@ -6,14 +6,14 @@ pipeline {
 
             }
              stages {
-                 stage (dev) {
+                 stage ('dev') {
                  steps {
                   sh '''
-                  docker login -u DOCKER_REPO_NAME -p DOCKER_CRED
+                  docker login -u $DOCKER_REPO_NAME -p $DOCKER_CRED
                   '''
                   }
                  }
-                 stage (test){
+                 stage ('test'){
                  steps {
                   sh '''
                   docker build . -t $DOCKER_REPO_NAME/$IMAGE_NAME:$IMAGE_VERSION.$BUILD_NUMBER
@@ -21,7 +21,7 @@ pipeline {
                   }
                  }
 
-                 stage (prod){
+                 stage ('prod'){
                  steps {
                   sh '''
                   docker push $DOCKER_REPO_NAME/$IMAGE_NAME:$IMAGE_VERSION.$BUILD_NUMBER
