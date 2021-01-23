@@ -23,7 +23,9 @@ pipeline {
 
                  stage (prod){
                  steps {
+                  sh '''
                   docker push $DOCKER_REPO_NAME/$IMAGE_NAME:$IMAGE_VERSION.$BUILD_NUMBER
+                  '''
                   }
                  }
              }
