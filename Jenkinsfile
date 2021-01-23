@@ -1,20 +1,29 @@
 pipeline {
     agent any
+            environment {
+            DOCKER_REPO_NAME = 'pankaj2934'
+            DOCKER_CRED = credentials('dockerhub')
+
+            }
              stages {
                  stage (dev) {
                  steps {
-                  echo "This is staging area"
+                  sh '''
+                  docker login -u DOCKER_REPO_NAME -p DOCKER_CRED
+                  '''
                   }
                  }
                  stage (test){
                  steps {
-                  echo "This is testing area"
+                  sh '''
+                  docker build . -t $DOCKER_REPO_NAME/$IMAGE_NAME:$IMAGE_VERSION.$BUILD_NUMBER
+                  '''
                   }
                  }
 
                  stage (prod){
                  steps {
-                  echo "This is prod area"
+                  docker push $DOCKER_REPO_NAME/$IMAGE_NAME:$IMAGE_VERSION.$BUILD_NUMBER
                   }
                  }
              }
