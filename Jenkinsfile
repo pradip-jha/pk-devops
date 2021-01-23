@@ -9,7 +9,7 @@ pipeline {
                  stage ('dev') {
                  steps {
                   sh '''
-                  docker login -u $DOCKER_REPO_NAME -p $DOCKER_CRED
+                  docker login -u $DOCKER_CRED_USR -p $DOCKER_CRED_PSW
                   '''
                   }
                  }
