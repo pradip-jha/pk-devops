@@ -31,11 +31,12 @@ pipeline {
                   }
                  }
                  stage('Update yaml') {
-                 steps
+                 steps{
                  script {
                          echo "updating image version to ${env.IMAGE_VERSION}.${env.BUILD_NUMBER}"
 
                          build propagate: false, job: 'devops-k8', parameters: [string(name: 'Enter_Version_No', value: "${env.IMAGE_VERSION}.${env.BUILD_NUMBER}")]
+                      }
                  }
                  }
              }
