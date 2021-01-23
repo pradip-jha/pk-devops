@@ -1,6 +1,8 @@
 pipeline {
     agent any
             environment {
+            IMAGE_NAME = 'pk-app'
+            IMAGE_VERSION = '0.1'
             DOCKER_REPO_NAME = 'pankaj2934'
             DOCKER_CRED = credentials('dockerhub')
 
