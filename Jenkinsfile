@@ -31,7 +31,7 @@ pipeline {
                   }
                  }
                  stage('Update yaml') {
-                 steps {
+                 steps
                  script {
                          echo "updating image version to ${env.IMAGE_VERSION}.${env.BUILD_NUMBER}"
 
